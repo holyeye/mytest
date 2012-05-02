@@ -25,8 +25,7 @@ public class Board implements Serializable {
 
 	private String title;
 
-	@OneToOne(cascade=CascadeType.ALL)
-	@PrimaryKeyJoinColumn
+	@OneToOne(cascade=CascadeType.ALL, mappedBy="board")
 	BoardDetail boardDetail;
 
 	public Long getId() {

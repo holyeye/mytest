@@ -20,8 +20,7 @@ public class BoardDetail {
 	@Column(length=4000)
 	private String content;
 	
-	
-	@OneToOne(mappedBy="boardDetail")
+	@OneToOne
 	@PrimaryKeyJoinColumn
 	private Board board;
 	
