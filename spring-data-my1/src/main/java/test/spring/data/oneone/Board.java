@@ -18,16 +18,16 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 @Entity
-//@GenericGenerator(name="Board", strategy="foreign", parameters=@Parameter(name="property", value="boardDetail"))
 public class Board implements Serializable {
 
-	@Id @GeneratedValue//(generator="Board")
+	@Id @GeneratedValue
 	private Long id;
 
 	private String title;
 
-//	@PrimaryKeyJoinColumn
-//	BoardDetail boardDetail;
+	@OneToOne(cascade=CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	BoardDetail boardDetail;
 
 	public Long getId() {
 		return id;
@@ -45,12 +45,13 @@ public class Board implements Serializable {
 		this.title = title;
 	}
 
-//	public BoardDetail getBoardDetail() {
-//		return boardDetail;
-//	}
-//
-//	public void setBoardDetail(BoardDetail boardDetail) {
-//		this.boardDetail = boardDetail;
-//	}
+	public BoardDetail getBoardDetail() {
+		return boardDetail;
+	}
+
+	public void setBoardDetail(BoardDetail boardDetail) {
+		this.boardDetail = boardDetail;
+		boardDetail.setBoard(this);
+	}
 
 }

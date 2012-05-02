@@ -35,7 +35,7 @@ public class BoardTest {
 		board.setTitle("hello");
 		BoardDetail boardDetail = new BoardDetail();
 		boardDetail.setContent("hello content!!!");
-//		board.setBoardDetail(boardDetail);
+		board.setBoardDetail(boardDetail);
 		boardRepository.save(board);
 		
 		
@@ -46,13 +46,5 @@ public class BoardTest {
 		
 	}
 	
-	@Test
-	public void test2(){
-		Listing listing = new Listing();
-//		listing.setListingLocation(new ListingLocation());
-		listingRepository.save(listing);
-		
-		
-	}
 
 }
