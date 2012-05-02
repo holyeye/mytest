@@ -41,12 +41,12 @@ public class AuditableUserSample {
     	
         User user1 = new User();
         user1.setLoginId("zipkyh1");
-        user1.setName("±è¿µÇÑ");
+        user1.setName("ê¹€ì˜í•œ");
         auditorAware.setAuditor(user1);
         
         User user2 = new User();
         user2.setLoginId("zipkyh2");
-        user2.setName("±èÇÑ¾ó");
+        user2.setName("ê¹€ì˜í•œ2");
         
         List<User> users = new ArrayList<User>();
         users.add(user1);
@@ -55,17 +55,17 @@ public class AuditableUserSample {
         
         
         Product product = new Product();
-        product.setName("¸íÇ°°¡¹æ");
+        product.setName("ëª…í’ˆê°€ë°©");
         product.setPrice(1000000);
         
         product = productRepository.save(product);
         
         
-        //ÀúÀåÈÄ
         User findUser = userRepository.findByLoginId("zipkyh1");
         buyService.buyProduct(findUser, product);
         
 //        buyService.buyProductbyLoginId(user1.getLoginId(), product.getId());
         
     }
+    
 }
