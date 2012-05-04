@@ -4,7 +4,7 @@
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<property name="hibernate.generate_statistics" value="true"/>
-			<property name="hibernate.use_sql_comments" value="true"/>
+			<property name="hibernate.use_sql_comments" value="false"/>
 			<property name="hibernate.dialect" value="true"/>
 			<property name="hibernate.ejb.naming_strategy" value="test.spring.data.infra.PrefixNamingStrategy"/>
 		</properties>

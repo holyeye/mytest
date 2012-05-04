@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -13,13 +14,15 @@ import org.hibernate.annotations.Parameter;
 @Entity
 public class BoardDetail {
 
-	@Id @GeneratedValue(generator="foreignGenerator")
-	@GenericGenerator(name="foreignGenerator", strategy="foreign", parameters=@Parameter(name="property", value="board"))
+//	@Id @GeneratedValue(generator="foreignGenerator")
+//	@GenericGenerator(name="foreignGenerator", strategy="foreign", parameters=@Parameter(name="property", value="board"))
+	@Id
 	private Long id;
 
 	@Column(length=4000)
 	private String content;
 	
+	@MapsId
 	@OneToOne
 	@PrimaryKeyJoinColumn
 	private Board board;

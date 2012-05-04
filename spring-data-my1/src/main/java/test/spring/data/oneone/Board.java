@@ -4,18 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.TableGenerator;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 
 @Entity
 public class Board implements Serializable {
@@ -28,6 +19,11 @@ public class Board implements Serializable {
 	@OneToOne(cascade=CascadeType.ALL, mappedBy="board")
 	BoardDetail boardDetail;
 
+	public void setBoardDetail(BoardDetail boardDetail) {
+		this.boardDetail = boardDetail;
+		boardDetail.setBoard(this);
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -48,9 +44,5 @@ public class Board implements Serializable {
 		return boardDetail;
 	}
 
-	public void setBoardDetail(BoardDetail boardDetail) {
-		this.boardDetail = boardDetail;
-		boardDetail.setBoard(this);
-	}
 
 }
