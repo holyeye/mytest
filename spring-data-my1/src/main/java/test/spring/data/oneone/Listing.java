@@ -12,38 +12,40 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table
 public class Listing implements Serializable {
-    @Id
-    @GeneratedValue
-    private long id;
-    @Column(columnDefinition= "DECIMAL(10,2)")
-    private double price;
-    @OneToOne
-    @PrimaryKeyJoinColumn
-    private ListingLocation listingLocation;
 
-    public long getId() {
-        return id;
-    }
+	@Id
+	@GeneratedValue
+	private long id;
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	@Column(columnDefinition = "DECIMAL(10,2)")
+	private double price;
 
-    public double getPrice() {
-        return price;
-    }
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "listing")
+	private ListingLocation listingLocation;
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+	public long getId() {
+		return id;
+	}
 
-    public ListingLocation getListingLocation() {
-        return listingLocation;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    public void setListingLocation(ListingLocation listingLocation) {
-        this.listingLocation = listingLocation;
-    }
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public ListingLocation getListingLocation() {
+		return listingLocation;
+	}
+
+	public void setListingLocation(ListingLocation listingLocation) {
+		listingLocation.setListing(this);
+		this.listingLocation = listingLocation;
+	}
 }

@@ -57,6 +57,27 @@ public class BoardTest {
 	}
 	
 	/**
+	 * 1:1단방향
+	 */
+	@Test
+	public void test2() {
+		
+		Listing listing = new Listing();
+		listing.setPrice(2000);
+		ListingLocation listingLocation = new ListingLocation();
+		listingLocation.setAddress("Seoul");
+		listing.setListingLocation(listingLocation);
+		em.persist(listing);
+		
+		
+		em.flush();
+		em.clear();
+		
+		boardRepository.findOne(listing.getId());
+		
+	}
+	
+	/**
 	 * 1:1조인 양방향
 	 */
 	@Test

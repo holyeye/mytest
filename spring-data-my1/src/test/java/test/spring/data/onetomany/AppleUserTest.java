@@ -1,6 +1,6 @@
 package test.spring.data.onetomany;
 
-import static org.junit.Assert.*;
+import java.util.Collection;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -47,6 +47,44 @@ public class AppleUserTest {
 		em.clear();
 		
 		AndroidUser find = em.find(AndroidUser.class, user.getId());
+		
+	}
+	
+	@Test
+	public void testJoinBi() {
+		BadaUser user = new BadaUser();
+		user.addBadaDevice(new BadaDevice());
+		user.addBadaDevice(new BadaDevice());
+		
+		em.persist(user);
+		
+		em.flush();
+		em.clear();
+		
+		BadaUser findUser = em.find(BadaUser.class, user.getId());
+		Collection<BadaDevice> badaDevices = findUser.getBadaDevices();
+		for (BadaDevice badaDevice : badaDevices) {
+			System.out.println("id = " + badaDevice.getId() + " / "  + badaDevice.getBadaUser().getId());
+		}
+		
+	}
+	
+	@Test
+	public void testJoinUni() {
+		DaumUser user = new DaumUser();
+		user.addDaumDevice(new DaumDevice());
+		user.addDaumDevice(new DaumDevice());
+		
+		em.persist(user);
+		
+		em.flush();
+		em.clear();
+		
+		DaumUser findUser = em.find(DaumUser.class, user.getId());
+		Collection<DaumDevice> daumDevices = findUser.getDaumDevices();
+		for (DaumDevice daumDevice : daumDevices) {
+			System.out.println("id = " + daumDevice.getId());
+		}
 		
 	}
 
