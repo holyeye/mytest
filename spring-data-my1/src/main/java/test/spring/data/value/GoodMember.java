@@ -6,29 +6,34 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 public class GoodMember {
 
 	@Id @GeneratedValue
 	private Long id;
-	
+
 	private String name;
-	
-	@ElementCollection
-	@OrderColumn
-	private Set<Address> addresses = new HashSet<Address>();
+
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="GOODMEMBER_ID")
+	private List<AddressEntity> addresses = new ArrayList<AddressEntity>();
 	
 	@ElementCollection
 	@OrderColumn
 	private Set<String> comments = new HashSet<String>();
 	
-	public void addAddress(Address address) {
+	public void addAddress(AddressEntity address) {
 		addresses.add(address);
 	}
 	
@@ -48,11 +53,11 @@ public class GoodMember {
 		this.name = name;
 	}
 
-	public Set<Address> getAddresses() {
+	public Collection<AddressEntity> getAddresses() {
 		return addresses;
 	}
 
-	public void setAddresses(Set<Address> addresses) {
+	public void setAddresses(List<AddressEntity> addresses) {
 		this.addresses = addresses;
 	}
 

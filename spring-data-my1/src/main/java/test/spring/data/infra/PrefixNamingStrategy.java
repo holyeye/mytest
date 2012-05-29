@@ -2,6 +2,7 @@ package test.spring.data.infra;
 
 import org.hibernate.cfg.DefaultComponentSafeNamingStrategy;
 
+
 @SuppressWarnings("serial")
 public class PrefixNamingStrategy extends DefaultComponentSafeNamingStrategy {
 

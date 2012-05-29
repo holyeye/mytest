@@ -1,7 +1,5 @@
 package test.spring.data.value;
 
-import static org.junit.Assert.*;
-
 import java.util.Collection;
 
 import javax.persistence.EntityManager;
@@ -13,9 +11,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-
-import test.spring.data.onetomany.AppleDevice;
-import test.spring.data.onetomany.AppleUser;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:auditing-context.xml" })
@@ -48,7 +43,7 @@ public class HomeMemberTest {
 		GoodMember member = new GoodMember();
 		member.setName("KKK");
 		
-		Address address1 = createAdd1();
+		AddressEntity address1 = createAddEntity1();
 		
 		
 		member.addAddress(address1);
@@ -61,8 +56,7 @@ public class HomeMemberTest {
 		
 		GoodMember findMember = em.find(GoodMember.class, member.getId());
 		
-		
-		Address address2 = createAdd2();
+		AddressEntity address2 = createAddEntity2();
 		
 		findMember.addAddress(address2);
 		findMember.addComment("싫어요");
@@ -75,8 +69,8 @@ public class HomeMemberTest {
 		
 		GoodMember findMember2 = em.find(GoodMember.class, member.getId());
 		
-		Collection<Address> addresses = findMember2.getAddresses();
-		for (Address address : addresses) {
+		Collection<AddressEntity> addresses = findMember2.getAddresses();
+		for (AddressEntity address : addresses) {
 			System.out.println(address);
 		}
 		
@@ -89,9 +83,17 @@ public class HomeMemberTest {
 		address1.setZipcode("123-123");
 		return address1;
 	}
+	
+	private AddressEntity createAddEntity1() {
+		AddressEntity address1 = new AddressEntity();
+		address1.setCity("서울");
+		address1.setStreet("용산구");
+		address1.setZipcode("123-123");
+		return address1;
+	}
 
-	private Address createAdd2() {
-		Address address2 = new Address();
+	private AddressEntity createAddEntity2() {
+		AddressEntity address2 = new AddressEntity();
 		address2.setCity("진주");
 		address2.setStreet("상대동");
 		address2.setZipcode("100-200");

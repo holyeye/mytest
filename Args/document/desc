@@ -1,0 +1,51 @@
+그래서 멈추었다. p289
+
+ArgsEx2 부터 시작
+========================================================================
+1. 
+[문제점]
+Type 추가때 마다 클래스 변경으로 OCP 원칙위반
+OCP 원칙 : 클래스를 변경하지 않고도 어떤 클래스의 환경을 변경할 수 있어야 한다.
+G23 : If/Else 혹은 Switch/Case 문보다 다형성을 사용하라.
+G8: 과도한 정보
+
+[해결방안]
+변하는것 : 파싱Type 추가
+변하지 않는것 : 기본 로직
+다형성을 이용해 Type 추가때 마다 클래스를 변경을 최소화 해야함
+
+290p [목록 14-11]
+
+private class ArgumentMarshaler {
+	private boolean booleanValue = false;
+
+	public void setBoolean(boolean value) {
+		booleanValue = value;
+	}
+
+	public boolean getBoolean() {
+		return booleanValue;
+	}
+}
+
+private class BooleanArgumentMarshaler extends ArgumentMarshaler {
+}
+
+private class StringArgumentMarshaler extends ArgumentMarshaler {
+}
+
+========================================================================
+
+Bool 인수 처리
+TestCase NullPointerException 처리 보여주기
+
+14.3 String 인수
+
+14.4 Int 는빼자 Test Case 추가하기
+=================================================================
+
+
+=================================================================
+
+314p
+args[], 제거하기
